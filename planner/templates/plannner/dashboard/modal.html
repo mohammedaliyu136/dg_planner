@@ -1,0 +1,226 @@
+<!-- modal start user profile -->
+    <div class="modal fade" id="user_profile" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="">{{user.username}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <a href="/logout/">Logout</a>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal-->
+
+
+<!-- modal start all courses -->
+    <div class="modal fade" id="all_courses" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="">All Courses ({{all_courses|length}})</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <ul class="list-group">
+              {% for course in all_courses %}
+                <li class="list-group-item"><a href="#">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	{{course.credits}}</a></li>
+              {% endfor %}
+              </ul>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal-->
+
+<!-- modal start courses_left -->
+    <div class="modal fade" id="courses_left" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="">Courses left ({{courses_left|length}})</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <ul class="list-group">
+              {% for course in courses_left %}
+                <li class="list-group-item"><a href="#">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	{{course.credits}}</a></li>
+              {% endfor %}
+              </ul>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal-->
+
+    <!-- modal start Completed courses -->
+    <div class="modal fade" id="completed_courses" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Completed Courses ({{courses_completed|length}})</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    {% for course in courses_completed %}
+                        <li class="list-group-item"><a href="#">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	{{course.credits}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+    </div>
+    <!-- end modal-->
+
+    <!-- modal start option 1 -->
+    <div class="modal fade" id="options_1" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Options ({{opt.0|length}})</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                {% for course in opt.0 %}
+                  <li class="list-group-item"><a href="#">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	({{course.credits}} credits)</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+    </div>
+    <!-- end modal-->
+
+    <!-- modal start option 2 -->
+    <div class="modal fade" id="options_2" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Options ({{opt.1|length}})</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                {% for course in opt.1 %}
+                  <li class="list-group-item"><a href="#">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	({{course.credits}} credits)</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+    </div>
+    <!-- end modal-->
+
+    <!-- modal start edit
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Edit</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-8">
+                  <select name="options" class="form-control">
+                    {% for course in opt.1 %}
+                    <option value="">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	({{course.credits}} credits)</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button class="btn btn-primary" style="width:100%">ADD</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <table class="table table-bordered" style="width: 100%; margin-top:15px">
+                        <thead>
+
+                          <tr>
+                            <th scope="col">Course Code</th>
+                            <th scope="col">Course Title</th>
+                            <th scope="col">Credit Hours</th>
+                            <th scope="col">Prerequisite</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr>
+                            <td>ECO 101</td>
+                            <td>Introduction to Economics</td>
+                            <td><center>3</center></td>
+                            <td>MAT110  </td>
+                            <td><button class="btn btn-danger">X</button></td>
+                          </tr>
+
+                          <tr>
+                            <td>STA 101</td>
+                            <td>Introduction to Research and Statistical Methods</td>
+                            <td><center>3</center></td>
+                            <td>MAT110  </td>
+                            <td><button class="btn btn-danger">X</button></td>
+                          </tr>
+
+                          <tr>
+                            <td>CIE 105</td>
+                            <td>Principles of Programming I</td>
+                            <td><center>3</center></td>
+                            <td>CIE111  </td>
+                            <td><button class="btn btn-danger">X</button></td>
+                          </tr>
+
+                          <tr>
+                            <td>SEN 400</td>
+                            <td>Software Engineering Professional Ethics</td>
+                            <td><center>3</center></td>
+                            <td></td>
+                            <td><button class="btn btn-danger">X</button></td>
+                          </tr>
+
+                          <tr>
+                            <td>SEN 406</td>
+                            <td>Technical Report Writing</td>
+                            <td><center>3</center></td>
+                            <td>WRI102  </td>
+                            <td><button class="btn btn-danger">X</button></td>
+                          </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+    </div>
+     end modal-->
+
+

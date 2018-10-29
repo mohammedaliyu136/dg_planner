@@ -1,0 +1,43 @@
+<!-- modal start courses_left -->
+    <div class="modal fade" id="mark_completed" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+           <form method="POST" action="/mark/completed/">
+                {% csrf_token %}
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Mark the courses you have passed</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                 <input type="hidden" name="ids" value="{% for course in semester %}{{course.departmentAbbr}}_{{course.courseNumber}},{%endfor%}0"/>
+                 {% for course in semester %}
+                    <li class="list-group-item">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}
+                      <span style="float: right;">
+                          <!--
+                        <select name="{{course.departmentAbbr}}_{{course.courseNumber}}" class="form-control">
+                          <option value="">Grade</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                          <option value="D">D</option>
+                          <option value="F">F</option>
+                        </select>
+                        -->
+                        <input type="checkbox" class="" name="{{course.departmentAbbr}}_{{course.courseNumber}}">
+                      </span>
+                    </li>
+                 {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+           </form>
+          </div>
+        </div>
+    </div>
+    <!-- end modal-->

@@ -1,0 +1,87 @@
+<!-- modal start edit -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">Plan Editor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-8">
+              <select name="options" class="form-control" id="options_edit_plan">
+                <option value="label" id="label">Select course</option>
+                {% for course in opt.0 %}
+                <option value="{{course.departmentAbbr}},{{course.courseNumber}},{{course.name}}" id="{{course.departmentAbbr}}_{{course.courseNumber}}_opt">{{course.departmentAbbr}} {{course.courseNumber}}	{{course.name}}	({{course.credits}} credits)</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-2" style="padding:0">
+              <button class="btn btn-primary" style="width:100%;" onclick="add_course_table(1)">ADD</button>
+            </div>
+            <div class="col-2" style="padding-left:5px">
+              <form action="/plan/edit/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="plan_editor_data" id="plan_editor_data"/>
+                <button class="btn btn-primary" style="width:100%" type="submit">Save</button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered" style="width: 100%; margin-top:15px">
+                    <thead>
+
+                      <tr>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Course Title</th>
+                        <th scope="col">Credit Hours</th>
+                        <th scope="col">Fulfills</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="table">
+
+                     {% for course in semester %}
+                     <script>$('#{{course.departmentAbbr}}_{{course.courseNumber}}_opt').remove();</script>
+                      <tr id="{{course.departmentAbbr}}_{{course.courseNumber}}">
+                        <td>{{course.departmentAbbr}} {{course.courseNumber}}</td>
+                        <td>{{course.name}}</td>
+                        <td><center>{{course.credits}}</center></td>
+                        <td></td>
+                        <td><button class="btn btn-danger" onclick="remove_course('#{{course.departmentAbbr}}_{{course.courseNumber}}', ['{{course.departmentAbbr}}','{{course.courseNumber}}','{{course.name}}', 1])">X</button></td>
+                      </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+</div>
+<script>
+    var sem = [{% for c in semester %}'{{c.departmentAbbr}}_{{c.courseNumber}}'{% if forloop.counter != semester.length %},{% endif %}{% endfor %}];
+    function add_course_to_sem(course){
+        sem.push(course)
+        submit_table_edit();
+    }
+    function remove_course_to_sem(course){
+        for(i=0;  i<sem.length; i++){
+            if(course==sem[i]){
+                sem.splice(i,1);
+            }
+        }
+        submit_table_edit();
+    }
+    function submit_table_edit(){
+        $('#plan_editor_data').val(sem.join(','));
+    }
+    submit_table_edit()
+</script>
+<!-- end modal-->

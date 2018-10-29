@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for p in pln.completedCourses.all %}
+    {{p.name}}<br/>
+{% endfor %}
+<br/><br/>
+{% for p in pln.notCompletedCourses.all %}
+    {{p.name}}<br/>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+id,name,corequisites,prerequisites,department,departmentAbbr,courseNumber,courseDescription,credits,catalogYear
+5,AUN Freshman Seminar Series,,,GENED,AUN,101,nil,3,2018-09-23
+22,African Civilization,,,GENED,CIV,101,nill,3,2018-09-23
+57,African Civilization: Special Topics,,,GENED,CIV,111,"focuses on special topics related to African civilization and the development of its societies, cultures, and institutions and the forces that have shaped that development.  Topics vary",3,2018-10-06
+27,Collage Physics 1,,4,Physics,PHY,131,nill,4,2018-09-27
+28,Collage Physics 2,,27,Physics,PHY,132,nill,4,2018-09-27
+17,Community Service,,,GENED,CDV,201,nill,3,2018-09-23
+36,Computer Organization & Architecture,,29,Computer Science,CSC,232,nill,3,2018-09-28
+32,Data Structures & Algorithms,,30,Computer Science,CSC,202,nill,3,2018-09-28
+44,Design of Web-based Systems,,"41,30",Computer Science,CSC,456,nill,3,2018-09-28
+40,Design& Analysis of Algorithms,,32,Computer Science,CSC,364,nill,3,2018-09-28
+33,Discrete Structures,,29,Computer Science,CSC,213,nill,3,2018-09-28
+7,Entrepreneurship and Development,,,Entrepreneurship,ENT,101,nill,3,2018-09-23
+53,Environmental Sustainability,,,Communications and Multimedia Design,CMD,207,"This course explores and implements promising and pertinent strategies for redeveloping and resettling communities in Northern Nigeria that were destroyed by the Boko Haram insurgency. Through in-class lessons, reading and on-line materials, research, and hands-on field experience, students will understand the challenges and opportunities presented by post-disaster circumstances. Students will learn how to engage with stakeholders, survey and map land attributes, and develop large-scale plans for housing, water, sanitation, and agriculture.",3,2018-10-06
+54,Financial Literacy,,,Communications and Multimedia Design,CMD,208,"Financial literacy  results in more stable communities while improved financial  literacy, particularly early in life, results in a higher standard of living over the long term, including retirement. This course will help students to understand the strong interconnection between financial illiteracy and poverty.  This course includes researching sustainable financial options and creating community learning network opportunities that will assist the abject poor in the community to make sound financial decisions. This course requires students to use knowledge gained in the classroom combined with indigenous knowledge systems to affect meaningful change in the community through training, capacity building, skills transfer, advocacy, and other interventions.",3,2018-10-06
+23,French,,,GENED,FRE,101,nill,3,2018-09-23
+6,Freshman Composition I,9,,GENED,WRI,101,nill,3,2018-09-23
+9,Freshman Composition II,,6,GENED,WRI,102,nill,3,2018-09-23
+24,History and Philosophy of Science,,,GENED,GEN,103,nill,3,2018-09-27
+51,IT Literacy,,,Communications and Multimedia Design,CMD,202,"There is a great need for poor communities to participate and become involved in the information society as a way to move out of abject poverty. Students taking this class are expected to think like developmental experts and help the community improve their IT literacy by visiting local communities, collecting baseline data about ICT literacy, skills, and usage among the various stakeholder groups.  The students will deliver ICT training to the stakeholder groups and undertake other suitable ICT intervention in the community relating to positively affecting the beneficiary groups.",3,2018-10-06
+19,Intercultural Communications,,,Communications and Multimedia Design,CMD,220,nill,3,2018-09-23
+26,Introduction to Biology,,,Biology,BIO,101,nill,4,2018-09-27
+13,Introduction to Communication Studies,,,Communications and Multimedia Design,CMD,110,nill,3,2018-09-23
+12,Introduction to Computers and Computing,,,Computer Science,CIE,111,nill,3,2018-09-23
+35,"Introduction to Databases, Web Technologies & Applications",,30,Computer Science,CIE,231,nill,3,2018-09-28
+48,Introduction to Economics,,4,ECONOMICS,ECO,101,nill,3,2018-09-28
+15,Introduction to Environmental Sustainability,,,GENED,NES,101,nill,4,2018-09-23
+8,Introduction to Research and Statistical Methods,,4,MATHMATICS,STA,101,nil,3,2018-09-23
+31,Introduction to Software Engineering,,30,Software Engineering,SEN,301,nill,3,2018-09-28
+49,Literacy & Numeracy,,,Communications and Multimedia Design,CMD,201,"This course combines academic learning with community service at an introductory level.  We will collaborate in one of AUN’s community development projects, Students Empowered through Language, Literacy, and Arithmetic (STELLAR).  In this course we will confront some of the major challenges facing the Nigerian primary education system today and spend most of our time working on-site in a primary school to set up and deliver an afterschool tutoring program. We will also develop educational resources, and collect and track data.",3,2018-10-06
+50,Literacy Using Radio,,,Communications and Multimedia Design,CMD,201,"In this course students will be introduced to the concepts of community service, citizenship, and critical reflection through an interdisciplinary service project to the community which is funded by the USAID. The project is Technology Enhanced Learning for All (TELA).  Students will use radio as a medium to teach literacy skills to vulnerable children in the local community. On completion of this course students will demonstrate an awareness on how radio can be used as a tool for literacy and for development. Students will further develop competence in basic radio production, announcing techniques and basic radio impact research.",3,2018-10-06
+34,Logic in Computer Science,,33,Computer Science,CSC,214,nill,3,2018-09-28
+14,Middle Eastern and Asian Civilization,,,GENED,CIV,201,nill,3,2018-09-23
+3,Nigerian Peoples and Cultures,,,GENED,GEN,102,nil,3,2018-09-23
+39,Object-Oriented Analysis & Design,,31,Computer Science,CSC,306,nill,3,2018-09-28
+25,PHI 300 Ethics and Leadership,,,PHI,PHI,300,nill,3,2018-09-27
+52,Peace Through Arts,,,Communications and Multimedia Design,CMD,206,"This course introduces students to the concepts of community service, citizenship, and critical reflection through applied arts as an interdisciplinary service project to the community. Students will serve AUN’s immediate community by using art as the medium for supporting and promoting peaceful dialogue and co-existence. The target community members will be the youth. This course integrates classroom knowledge, applied art and community outreach.",3,2018-10-06
+55,Poverty Stoplight,,,Communications and Multimedia Design,CMD,209,") provides students with a general understanding of multidimensional poverty in the local context and how to design and develop realistic solutions to pressing poverty indicators in Nigeria. Special emphasis will be placed on the history of the development, application, and initial results of the social innovation “Poverty Stoplight”, a poverty measurement and elimination tool being implemented currently at AUN and Standard Microfinance Bank in Adamawa State. At the end of the course, students will have the knowledge and skills to define poverty indicators, and will be able to understand, design and develop realistic solutions, incorporating inputs from key organizations and members of the community.",3,2018-10-06
+41,Principles of Database Systems,,"32,35",Computer Science,CSC,384,nill,3,2018-09-28
+20,Principles of Journalism,,"13,18",Communications and Multimedia Design,CMD,213,nill,3,2018-09-23
+16,Principles of Multimedia Design,,,Communications and Multimedia Design,CMD,121,nill,3,2018-09-23
+38,Principles of Operating Systems,,30,Computer Science,CIE,302,nill,3,2018-09-28
+21,Principles of PR and Advertising,,13,Communications and Multimedia Design,CMD,212,nill,3,2018-09-23
+29,Principles of Programming I,,12,Computer Science,CIE,105,nill,3,2018-09-28
+30,Principles of Programming II,,29,Computer Science,CIE,106,nill,3,2018-09-28
+42,Programming Languages,,"32,30",Computer Science,CSC,407,nill,3,2018-09-28
+47,Senior Design Project,,46,Computer Science,CSC,490,nill,3,2018-09-28
+45,Software Engineering Professional Ethics,,,Software Engineering,SEN,400,nill,3,2018-09-28
+37,Systems Programming,,30,Computer Science,CSC,301,nill,3,2018-09-28
+46,Technical Report Writing,,9,Software Engineering,SEN,406,nill,3,2018-09-28
+43,Theory of Computation,,42,Computer Science,CSC,434,nill,3,2018-09-28
+4,University Algebra,8,,MATHMATICS,MAT,110,nill,3,2018-09-23
+56,Western Civilization,,,GENED,CIV,102,"This course traces the history of Africa from the birth of the human species to the present, taking into account the way various academic disciplines contribute to the body of knowledge about African history and development; highlighting key moments in African history that have shaped its present socio-political and economic context,  and focusing on North and West Africa.",3,2018-10-06
+58,Western Civilization: Special Topics,,,GENED,CIV,112,"focuses on special topics related to western civilization and the development of its societies, cultures, and institutions and the forces that have shaped that development.  Topics vary",3,2018-10-06
+18,Writing for the Mass Media,,6,Communications and Multimedia Design,CMD,120,nill,3,2018-09-23

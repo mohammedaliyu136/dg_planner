@@ -1,0 +1,50 @@
+{% for semester in schedule%}
+    {% if semester%}
+        {% if forloop.counter == 1%}
+            {% include "./mark_completed.html" %}
+            {% include "./plan_editor.html" %}
+        {% endif %}
+        {% if forloop.counter == 2%}
+
+        {% endif %}
+    <table class="table table-bordered" style="width: 100%">
+        <thead>
+          <tr>
+            <th colspan="5">Semester: {{ forloop.counter }}
+              <span style="float: right;">
+              {% if forloop.counter == 1%}
+                <span class="btn btn-warning" data-toggle="modal" data-target="#edit">Edit</span>
+                <span class="btn btn-primary" data-toggle="modal" data-target="#options_1">Options</span>
+                <span class="btn btn-success" data-toggle="modal" data-target="#mark_completed">Mark as completed</span>
+              {%endif%}
+              {% if forloop.counter == 2%}
+                  <!--
+                <span class="btn btn-warning" data-toggle="modal" data-target="#edit_2">Edit</span>
+                -->
+                <span class="btn btn-primary" data-toggle="modal" data-target="#options_2">Options</span>
+              {%endif%}
+              </span>
+            </th>
+          </tr>
+          <tr>
+            <th scope="col">Course Code</th>
+            <th scope="col">Course Title</th>
+            <th scope="col">Credit Hours</th>
+            <th scope="col">Prerequisite</th>
+            <th scope="col">Fulfills</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for course in semester %}
+          <tr>
+            <td>{{course.departmentAbbr}} {{course.courseNumber}}</td>
+            <td>{{course.name}}</td>
+            <td><center>{{course.credits}}</center></td>
+            <td>{% for pre in course.prerequisites.all %}{{pre.departmentAbbr}}{{pre.courseNumber}} {% if forloop.counter != course.prerequisites.all.count and course.prerequisites.all.count != 1 %}&{%endif%} {% endfor %}</td>
+            <td></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {%endif%}
+{% endfor %}

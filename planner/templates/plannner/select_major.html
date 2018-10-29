@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+
+<div class="card" style="width: 100%; margin-top: 50px">
+    <div class="card-header">
+        Programs
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for m in major %}
+            <li class="list-group-item"><a href="/completed/{{m.id}}/">{{m.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock main_content %}

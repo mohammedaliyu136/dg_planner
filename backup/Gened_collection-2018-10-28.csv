@@ -1,0 +1,18 @@
+id,name,is_group,courses,group_courses
+19,Free Elective 3,0,,
+18,Free Elective 2,0,,
+17,Free Elective 1,0,,
+16,Freshmen Composition II,0,9,
+15,Freshmen Composition,0,6,
+14,Introduction to Research and Statistical Methods,0,8,
+13,University Algebra,0,4,
+12,Nigerian Peoples and Culture,0,3,
+11,CIVILIZATION,1,,6
+10,Business and Entrepreneurship,0,7,
+9,Information Technology,0,12,
+8,Community Service,1,,5
+7,"BIO, CHE, GEO, NES, PHY",1,,"3,4"
+6,PHI 300 Ethics and Leadership,0,25,
+5,History and Philosophy of Science,0,24,
+4,"ARH, ART, ENG, MUS, PHI, FRE or FUL, ARA",1,,2
+3,AUN Freshman Seminar Series,0,5,

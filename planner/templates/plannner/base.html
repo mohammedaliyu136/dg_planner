@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">    {% load staticfiles %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Degree - Planner</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    {% include "./nav.html"%}
+
+    <!-- modal start -->
+    {% include "./dashboard/modal.html"%}
+    <!-- end modal-->
+
+
+
+    <!-- Page Content -->
+    <div class="container"><div class="container">
+      <div class="row" style="">
+          <!-- content start -->
+          {% block main_content %}{% endblock main_content %}
+          <!-- end content -->
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+      function remove_course(id, data){
+        $(id).remove();
+        //'WRI,102,Freshman Composition II'
+        str = "<option value='"+data[0]+","+data[1]+","+data[2]+"'>"+data[0]+" "+data[1]+"	"+data[2]+"	("+"3"+" credits)</option>";
+        $("#options_edit_plan").append(str);
+      }
+      function add_course_table(){
+        opt = $("#options_edit_plan").val();
+        opt = opt.split(",")
+        //'WRI,102,Freshman Composition II'
+        //str = "<option value='"+data[0]+","+data[1]+","+data[2]+'>"+data[0]+" "+data[1]+"	"+data[2]+"	("+"3"+" credits)</option>";
+
+
+
+        str = "<tr id='"+opt[0]+"_"+opt[1]+"'>";
+        str+= "<td>"+opt[0]+" "+opt[1]+"</td>";
+        str+= "<td>"+opt[2]+"</td>";
+        str+= "<td><center>3</center></td>";
+        str+= "<td></td>";
+        str+= "<td><button class='btn btn-danger' onclick=\"remove_course('#"+opt[0]+"_"+opt[1]+"', ['"+opt[0]+"','"+opt[1]+"','"+opt[2]+"'])\">X</button></td>";
+        str+= "</tr>";
+
+        if(opt=="label"){
+          alert("please select a course")
+        }else{
+          $("#table").append(str);
+          opt_id = "#"+opt[0]+"_"+opt[1]+"_opt";
+          $(opt_id).remove();
+        }
+
+      }
+    </script>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,55 @@
+{% extends "./base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning " role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="card" style="width: 100%; margin-top: 50px">
+        <div class="card-header">
+            Courses<span style="float: right;"><input class="btn btn-primary" type="submit" value="Generate"></span>
+        </div>
+        <ul class="list-group list-group-flush">
+        {% for course in courses %}
+            <li class="list-group-item" id="{{course.departmentAbbr}}{{course.courseNumber}}_l">
+                <div class="form-check">
+                    <div style="float: left">
+                        <input class="{{course.departmentAbbr}}{{course.courseNumber}}" type="checkbox" name="{{course.departmentAbbr}}{{course.courseNumber}}" id="label_{{course.departmentAbbr}}{{course.courseNumber}}" onchange="checkedd('{{course.departmentAbbr}}{{course.courseNumber}}')" style="display: none">
+                    </div>
+                    <label style="float: left; margin-left: 5px" for="label_{{course.departmentAbbr}}{{course.courseNumber}}" id="{{course.departmentAbbr}}{{course.courseNumber}}">{{course.departmentAbbr}}{{course.courseNumber}}  {{course.name}}</label>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</form>
+
+
+<style>
+    .checked{
+        color: white;
+    }
+</style>
+<script>
+    function checkedd(id){
+        if($("#label_"+id).is(':checked')){
+            $("#"+id+"_l").addClass("bg-success")
+            $("#"+id).addClass("checked")
+        }else{
+            $("#"+id+"_l").removeClass("bg-success")
+            $("#"+id).removeClass("checked")
+
+        }
+    }
+
+</script>
+
+{% endblock main_content %}
