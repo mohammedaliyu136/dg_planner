@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'planner.apps.PlannerConfig',
     'planner',
+    #library
+    'import_export',
 ]
 
 MIDDLEWARE_CLASSES = [
