@@ -3,4 +3,4 @@ Django==1.9.8
 gunicorn==19.6.0
 psycopg2==2.7.3.1
 whitenoise==3.2
-import_export
+django-import-export
