@@ -1,0 +1,164 @@
+<!-- Modal Schedule Planner -->
+<div class="modal fade" id="planner_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Schedule Planner</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="courseSelect">Course</label>
+            <select class="form-control" id="courseSelect">
+              {% for course in courses %}
+                <option value="{{course.id}}">{{course.id}} - {{course.course_title}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="semesterSelect">Semester</label>
+            <select class="form-control" id="semesterSelect">
+              <option value="semester_1">Semester 1</option>
+              <option value="semester_2">Semester 2</option>
+              <option value="semester_3">Semester 3</option>
+              <option value="semester_4">Semester 4</option>
+              <option value="semester_5">Semester 5</option>
+              <option value="semester_6">Semester 6</option>
+              <option value="semester_7">Semester 7</option>
+              <option value="semester_8">Semester 8</option>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="getData()">Add to Schedule</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getData(){
+    var course = $('#courseSelect').val();
+    var semester = $('#semesterSelect').val();
+    var grade = $('#gradeSelect').val();
+    getCourse(course, semester);
+  };
+
+  function remove_course(course, semester){
+      var tr_id = '"#'+course+'"';
+      $("#"+course).remove();
+      course_info.map(function(currentValue, index, arr){
+                    if(course == course_info[index][0]){
+                        var selectedCourse = course_info[index];
+                        $("#courseSelect").append('<option value="'+selectedCourse[0]+'">'+course+' - '+selectedCourse[1]+' </option>');
+                        var units = (parseInt($("#"+semester).text()) - 3);
+                        $("#"+semester).text(units);
+                        }
+                    });
+  }
+
+  function getCourse(course, semester){
+        course_info.map(function(currentValue, index, arr){
+                    if(course == course_info[index][0]){
+                        var selectedCourse = course_info[index]
+
+                        var str = "<tr id='"+course+"'>";
+                        str += "<td><span class='glyphicon glyphicon-ok-circle'></span></td>";
+                        str += "<td>Type</td>";
+                        str += "<td>"+selectedCourse[0]+"</td>";
+                        str += "<td>3</td>";
+                        str += "<td>"+selectedCourse[1]+"</td>";
+                        str += "<td>Prereqs</td>";
+                        str += "<td>Notes</td>";
+                        var semtr = (semester+"_units");
+                        str += "<td><button onclick=remove_course('"+course+"','"+semtr+"') class='btn btn-danger'>Drop</button></td>"
+                        str += "</tr>";
+                        if(semester == "semester_1"){
+                            var units = (parseInt($("#semester_1_units").text()) + 3);
+                            var t_units = (parseInt($("#total_units").text()) + 3);
+                            if(units<=15){
+                               PieData[1].value = (PieData[1].value+3);
+                               console.log(PieData[1].value);
+                               //reset_chart();
+                               $("#semester_1_units").text(units);
+                               $("#total_units").text(t_units);
+                               $( "#semester_1" ).append(str);
+                               $("#courseSelect option[value='"+course+"']").remove();
+                            }else{
+                               alert('You can only add only 15 units');
+                            }
+                        }else if(semester == "semester_2"){
+                            var units = (parseInt($("#semester_2_units").text()) + 3);
+                            var t_units = (parseInt($("#total_units").text()) + 3);
+                            if(units<=15){
+                               $("#total_units").text(t_units);
+                               $("#semester_2_units").text(units);
+                               $( "#semester_2" ).append(str);
+                               $("#courseSelect option[value='"+course+"']").remove();
+                            }else{
+                               alert('You can only add only 15 units');
+                            }
+                        }
+                    }
+                  }
+              );
+  }
+
+var course_code = [
+    {% for course in courses %}
+        "{{course.id}}",
+    {% endfor %}
+];
+course_code.splice(-1,1);
+console.log(course_code);
+var course_info = [
+    {% for course in courses %}
+        ["{{course.id}}",
+        "{{course.course_title}}",
+        "{{course.dept_name}}",
+        "{{course.course_credit}}"],
+    {% endfor %}
+];
+course_info.splice(-1,1)
+console.log(course_info);
+
+</script>
+
+
+<div class="modal fade" id="catalog_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="catalog_ModalLabel">Catalog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <table class="table" style="width:100%">
+            <thead class="thead-dark" style="background-color: black; color: white">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Dept-Name</th>
+                <th scope="col">Units</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+              <tr>
+                <th scope="row">{{course.id}}</th>
+                <td>{{course.course_title}}</td>
+                <td>{{course.dept_name}}</td>
+                <td>{{course.course_credit}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

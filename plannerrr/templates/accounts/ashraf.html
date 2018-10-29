@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load staticfiles %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'images/ashraf_l/bootstrap.css' %}" rel="stylesheet"/>
+  <script src="{% static 'images/ashraf_l/jquery.js' %}"></script>
+  <script src="{% static 'images/ashraf_l/bootstrap.js' %}"></script>
+
+</head>
+<body>
+<div class="col">
+  <center>
+    <img src="{% static 'images/ashraf_l/dplanner.png' %}" style="height:210px; width: 520px">
+    <h2><center>
+        <button class="btn btn-primary" href="#login" data-toggle="modal">Login</button> |
+        <button class="btn btn-primary" href="#signup" data-toggle="modal">Sign Up</button></center></h2>
+   </center>
+</div>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="loginmodal">AUN Degree Planner</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+		<form action="/account/login/" method="post">
+            {% csrf_token %}
+		  <div class="form-group">
+		    <label for="{{ form.id_number.id_for_label }}">Username</label>
+		    {{ form.id_number }}
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.password.id_for_label }}">Password</label>
+		    {{ form.password }}
+          </div>
+
+        </div>
+      </div>
+        <div class="modal-footer">
+      	<div class="form-group">
+              <button type="button" class="btn btn-signup" href="#signup" data-toggle="modal">SignUp</button>
+			 <button type="submit" class="btn btn-success">Login</button>
+		  </div>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Sign up Modal -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signuptitle">Register</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+		<form action="" method="post">
+		  <div class="form-group">
+		    <label for="name">Name</label>
+		    <input type="text" class="form-control" id="name" placeholder=" Name">
+		  </div>
+            <div class="form-group">
+		    <label for="idnumber">ID Number</label>
+		    <input type="text" class="form-control" id="idnumber" placeholder=" ID Number">
+		  </div>
+            <div class="form-group">
+                <label for="major">Major</label>
+            <select class="form-control" id="major">
+                <option>Computer Science</option>
+                <option>Software Engineering</option>
+            </select>
+          </div>
+             <div class="form-group">
+                <label for="year_enrolled">Year enrolled</label>
+            <select class="form-control" id="year_enrolled">
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018</option>
+            </select>
+          </div>
+            <div class="form-group">
+                <label for="year_enrolled">Semester enrolled</label>
+            <select class="form-control" id="semester_enrolled">
+                <option>Fall</option>
+                <option>Spring</option>
+            </select>
+            </div>
+            <div class="form-group">
+		    <label for="email">Email Address</label>
+		    <input type="text" class="form-control" id="email" placeholder=" Email">
+		  </div>
+		  <div class="form-group">
+		    <label for="password">Password</label>
+		    <input type="password" class="form-control" id="enter_password" placeholder=" Password">
+          </div>
+            <div class="form-group">
+		    <label for="password">Re-enter Password</label>
+		    <input type="password" class="form-control" id="re_enterpassword" placeholder=" Re-enter Password">
+          </div>
+        <div class="modal-footer">
+      	<div class="form-group">
+			<button type="button" class="btn btn-login" href="#login" data-toggle="modal">Login</button>
+			  <button type="submit" class="btn btn-success">Sign Up</button>
+		  </div>
+        </div>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<br><br><br>
+<div class="container-fluid center " >
+    <h2 class="team"><center>Our Team</center></h2>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card"><center>
+        <img class="img" src="{% static 'images/ashraf_l/fonkam.jpg' %}" alt="Card image cap" style="align:center; height:150px; width:120px; border-radius: 10%">
+      <div class="card-block">
+        <h4 class="card-title">Dr. Mathias Fonkam</h4>
+        <p class="card-text">Faculty Advisor</p>
+    <a href="#" class="card-text">mfonkam@aun.edu.ng</a>
+      </div></center>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card"><center>
+        <img class="img" src="{% static 'images/ashraf_l/ash.jpg' %}" alt="Card image cap" style="align:center; height:150px; width:120px; border-radius: 10%">
+      <div class="card-block">
+        <h4 class="card-title">Dr. Abubakar Sadiq Hussaini</h4>
+          <p class="card-text">Faculty Advisor</p>
+          <a href="#" class="card-text">ash.hussaini@aun.edu.ng</a>
+      </div></center>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card"><center>
+        <img class="img" src="{% static 'images/ashraf_l/adbello.jpg'%}" alt="Card image cap" style="align:center; height:150px; width:120px; border-radius: 10%">
+      <div class="card-block">
+        <h4 class="card-title">Muhammad Ashraf Dauda Bello</h4>
+        <p class="card-text">UI Developer</p>
+          <a href="#" class="card-text">muhammad.dauda@aun.edu.ng</a>
+      </div></center>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="card"><center>
+        <img class="img" src="{% static 'images/ashraf_l/kabir.jpg'%}" alt="Card image cap" style="align:center; height:150px; width:120px; border-radius: 10%;">
+      <div class="card-block">
+        <h4 class="card-title">Mohammed Aliyu</h4>
+        <p class="card-text">Back-end Developer</p>
+        <a href="#" class="card-text">mohammed.aliyu1@aun.edu.ng</a>
+      </div></center>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

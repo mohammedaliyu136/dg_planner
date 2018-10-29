@@ -1,0 +1,58 @@
+{% extends "advisor_base.html" %}
+
+{% block base_body %}
+{%load static %}
+<style>
+  .card{
+    width: 15rem;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    float: left;
+    margin-right: 20px;
+    border-radius: 4px;
+  }
+  #first{
+    margin-left: 7%;
+  }
+  .card-text{
+    color: grey;
+  }
+</style>
+<div class="row" style="margin-top: 35px">
+    <div class="card" style="" id="first">
+      <img class="card-img-top" src="{% static 'images/team/fonkam.jpg' %}" alt="Card image cap" style="height:300px; width:100%">
+      <div class="card-block" style="padding: 5px">
+        <h4 class="card-title">Dr. Mathias Fonkam</h4>
+        <p class="card-text">Faculty Advisor</p>
+        <p>mfonkam@aun.edu.ng</p>
+      </div>
+    </div>
+
+    <div class="card" style="">
+      <img class="card-img-top" src="{% static 'images/team/ash.jpg' %}" alt="Card image cap" style="height:300px; width:100%">
+      <div class="card-block" style="padding: 5px">
+        <h4 class="card-title">Dr. Abubakar Sadiq Huseeini (ASH)</h4>
+        <p class="card-text">Faculty Advisor</p>
+        <p>mfonkam@aun.edu.ng</p>
+      </div>
+    </div>
+
+    <div class="card" style="">
+      <img class="card-img-top" src="{% static 'images/team/adbello.jpg' %}" alt="Card image cap" style="height:300px; width:100%">
+      <div class="card-block" style="padding: 5px">
+        <h4 class="card-title">Muhammad Ashraf Dauda Bello</h4>
+        <p class="card-text">Developer (Front-end)</p>
+        <p>muhammad.dauda@aun.edu.ng</p>>
+      </div>
+    </div>
+
+    <div class="card" style="">
+      <img class="card-img-top" src="{% static 'images/team/kabir.jpg' %}" alt="Card image cap" style="height:300px; width:100%">
+      <div class="card-block" style="padding: 5px">
+        <h4 class="card-title">Mohammed Aliyu</h4>
+        <p class="card-text">Developer (Back-end)</p>
+        <p>mohammed.aliyu1@aun.edu.ng</p>
+      </div>
+    </div>
+</div>
+{% endblock base_body %}

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
+
+    <title>Box</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+  </head>
+<body>
+	<nav class="navbar navbar-toggleable-md fixed-top" style="background: #0000FF;">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="color: white">Degree Planner</a>
+    </nav>
+    <br/><br/><br/><br/>
+    <div class="container">
+    	<div class="row">
+    		<div class="col-8"><h5>Degree Progress</h5></div>
+		    <div class="col-4"><h5>Expected Graduation:Summer 2017</h5></div>
+		    <div class="col-12">
+		    	<hr>
+		    </div>
+    	</div>
+    	<div class="row">
+    		<div class="col-8" style="padding: 0">
+    			<div class="row">
+    				<div class="col-6">
+    					<span style="margin-left: 27%; font-weight: 620;">132 Units</span>
+    				</div>
+    				<div class="col-6">
+    					<span style=" font-weight: 620;">Units per Course Type</span>
+    				</div>
+    			</div>
+    			<div class="col-6"  style="border: 0px solid black;  float: left;">
+    				<div class="row" id="chart_container"><canvas id="pieChart" height="200" style="margin-left: -12%"></canvas></div>
+    			</div>
+	    		<div class="col-6" style="border: 0px solid black;  float: left;">
+			      	<center style=" margin-top: 10%;">Required Units</center>
+			      	<hr style="margin-top: 5px; margin-bottom: 5px;">
+			      	<table style="width: 100%">
+			      		<tr>
+			      			<td>Major</td>
+			      			<td>26</td>
+			      			<td></td>
+			      		</tr>
+			      		<tr>
+			      			<td>GEN-ED</td>
+			      			<td>42</td>
+			      			<td></td>
+			      		</tr>
+			      		<tr>
+			      			<td>Elective</td>
+			      			<td>19</td>
+			      			<td></td>
+			      		</tr>
+			      	</table>
+	    		</div>
+	    		<div class="col-7" style="border: 0px solid black;  float: left; margin-top: 30px">
+	    			<ul>
+				    	<li><b>Total units Earned</b>: <span id="total_units">99</span></li>
+                        <!--
+				      	<li><b>GPA</b>: 2.542</li>
+				      	<li><b>Academic Standing</b>: Good  as of Summer 2016</li>
+				      	-->
+				    </ul>
+	    		</div>
+    		</div>
+    		<div class="col-4" style="padding: 0">
+    			<div class="col-12" style="border-left: 2px solid rgba(0,0,0,.1);  float: left; height: 280px">
+    				<span style="font-weight: bold;">I Dont know what to put here!!!</span>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="row" style="margin-top: 50px">
+    		<div class="col-12" style="border: 0px solid red; padding: 0; margin-bottom: -6px">
+    			<h5 style="float: left;">Course Requirements</h5>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#catalog_model" style="float: right; margin-right: 5px; margin-top: -10px">
+                    Course Catalog
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planner_model" style="float: right; margin-right: 5px; margin-top: -10px">
+                    Open Schedule Planner
+                </button>
+                {% include "dashboard/modal.html" %}
+    		</div>
+    		<div class="col-12" style="padding: 0">
+    			<hr>
+    		</div>
+    	</div>
+
+    	<div class="row" style="margin-top: 5px">
+    		<div class="col-12" style="border: 0px solid red; padding: 0; margin-bottom: -6px">
+    			<h5 style="float: left;">Semester 1 (<span id="semester_1_units">0</span> Units)</h5>
+    		</div>
+    		<div class="col-12" style="padding: 0">
+    			<hr>
+    		</div>
+    	</div>
+    	<div class="row">
+    		<div class="col-12" style="">
+    			<table class="table table-striped" style="" id="semester_1">
+                    <thead class="thead-dark" style="">
+    				<tr>
+    					<th></th>
+    					<th>Type</th>
+    					<th>Course #</th>
+    					<th>Units</th>
+    					<th>Title</th>
+    					<th>Prereqs</th>
+    					<th>Notes</th>
+    					<th>Action</th>
+    				</tr>
+    			</table>
+    		</div>
+    	</div>
+
+        <!-- semester 2 -->
+    	<div class="row" style="margin-top: 20px;">
+            <div class="col-12" style="padding:0; margin-bottom: -6px">
+                <h5 style="float: left;">Semester 2 (<span id="semester_2_units">0</span> Units)</h5>
+            </div>
+    		<div class="col-12">
+    			<table class="table table-striped" style="" id="semester_2">
+    			</table>
+    		</div>
+    	</div>
+    </div>
+
+
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <style type="text/css">
+    	
+    </style>
+    <script type="text/javascript" src="{% static 'chart/chart1.js' %}"></script>
+       <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+    <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-6">
+             
+
+              <!-- DONUT CHART -->
+              <div class="box box-danger">
+              	<!--
+                <div class="box-header with-border">
+                  <h3 class="box-title">Donut Chart</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div> -->
+                <div class="box-body">
+                    <canvas id="pieChart" height="250"></canvas>                  
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col (LEFT) -->
+            <div class="col-md-6">
+            
+
+            
+
+            </div><!-- /.col (RIGHT) -->
+          </div><!-- /.row -->
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <script type="text/javascript" src="{% static 'chart/chart2.js' %}"></script>
+
+
+
+</body>
+</html>

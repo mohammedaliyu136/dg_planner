@@ -1,0 +1,87 @@
+{% extends "accounts/register_base.html" %}
+
+{% block base_body %}
+
+<div class="row" style="margin-top: 100px; margin-right: 25px;">
+   <div class="large-4 large-offset-8 columns">
+     <div class="panel callout radius" style="background-color: white; border:8px solid #5A9BD5;">
+
+       <!-- Title -->
+       <div class="row">
+           {%load static %}
+         <label style="margin-top: -16px;margin-bottom: 25px; text-align: center; font-weight: bold;"><img src="{% static 'images/signup_icon.png' %}"></label>
+       </div>
+<form action="" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+         <!-- Full Name -->
+     <div class="row">
+         <div class="large-6 columns">
+           <label style="font: bold 12px/30px Georgia, serif;">First Name</label>
+         </div>
+         <div class="large-6 columns">
+           <label style="font: bold 12px/30px Georgia, serif;">Last Name</label>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="large-6 columns">
+           {{ form.first_name }}
+         </div>
+         <div class="large-6 columns">
+           {{ form.last_name }}
+         </div>
+
+       </div>
+
+
+       <div class="row">
+         <div class="large-12 columns">
+           <label style="font: bold 12px/30px Georgia, serif;">ID Number:</label>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="large-12 columns">
+           {{ form.username }}
+         </div>
+
+       </div>
+
+         <!-- Email -->
+         <div class="row">
+           <div class="large-12 columns">
+             <label style="font: bold 12px/30px Georgia, serif;">Email:</label>
+         </div>
+             </div>
+         <div class="row">
+           <div class="large-12 columns">
+                {{ form.email }}
+           </div>
+
+         </div>
+
+       <!-- Password -->
+         <div class="row">
+           <div class="large-12 columns">
+             <label style="font: bold 12px/30px Georgia, serif;">Password:</label>
+           </div>
+             </div>
+         <div class="row">
+         <div class="large-12 columns">
+              {{ form.password }}
+         </div>
+         </div>
+
+         <!-- SignUp Button -->
+       <div class="row">
+         <div class="large-12 columns">
+           <button type="submit" class="success button" style="width: 100%; background-color: #5A9BD5;">SignUp</button>
+         </div>
+
+       </div>
+</form>
+     </div>
+   </div>
+</div>
+{% endblock base_body %}

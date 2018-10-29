@@ -1,0 +1,8 @@
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+  {{ form.checkbox }}I have a bike<br>
+  <input type="checkbox" name="vehicle" value="Car" checked> I have a car<br>
+  <button type="submit" class="success button">Submit</button>
+</form>

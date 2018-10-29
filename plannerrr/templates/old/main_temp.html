@@ -1,0 +1,153 @@
+{% extends "main_base.html" %}
+
+{% block base_body %}
+
+<style type="text/css">
+  tbody:after {
+    content:"drop here";
+    height:30px;
+}
+</style>
+  <script>
+$(document).ready(function() {
+    //Make diagnosis table sortable
+     $('#fl_13 tbody').sortable({
+            connectWith: '#fl_13 tbody, #sp_13 tbody, #options tbody',
+            receive: function(event,ui) {
+              
+            }
+          })
+      $('#sp_13 tbody').sortable({
+            connectWith: '#fl_13 tbody, #sp_13 tbody, #options tbody',
+            receive: function(event,ui) {
+              
+            }
+          })
+      $('#options tbody').sortable({
+            connectWith: '#fl_13 tbody, #sp_13 tbody, #options tbody',
+            receive: function(event,ui) {
+              
+            }
+          })
+     
+
+       $('tr').on('mousedown', function() {
+            $(this).css(
+                   {
+                       'background-color' : 'lightblue',
+                       'color' : 'white'
+                   }
+              )
+          }).on('mouseup', function() {
+            $(this).css(
+                   {
+                       'background-color' : '',
+                       'color' : ''
+                   }
+              )
+          });
+
+});
+</script>
+   
+<div class="row" >
+  <div class="large-6 columns" style="overflow-y: scroll; height:570px;">
+    <div class="row">
+       <table id="fl_13">
+  <thead>
+    <tr>Spring</tr>
+    <tr>
+      <th width="100">Course Code</th>
+      <th width="350">Title</th>
+      <th width="150">Credits</th>
+      <th width="150">Pre-requisite</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td align="center" colspan="4">end</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    
+  </tbody>
+</table>
+    </div>
+    <div class="row">
+       <table id="sp_13">
+  <thead>
+    <tr>Fall</tr>
+    <tr>
+      <th width="100">Course Code</th>
+      <th width="350">Title</th>
+      <th width="150">Credits</th>
+      <th width="150">Pre-requisite</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+    </div>
+    
+  </div>
+  <div class="large-6 columns" style="overflow-y: scroll; height:570px;">
+      <table id="options">
+  <thead>
+    <tr>Choose your courses</tr>
+    <tr>
+      <th width="100">Course Code</th>
+      <th width="350">Title</th>
+      <th width="150">Credits</th>
+      <th width="150">Pre-requisite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="100">CIE 111</td>
+      <td width="350">Intro to Comp</td>
+      <td width="150">3</td>
+      <td width="150">N/A</td>
+    </tr>
+    <tr>
+      <td width="100">CIE 102</td>
+      <td width="350">Programming</td>
+      <td width="150">3</td>
+      <td width="150">N/A</td>
+    </tr>
+    <tr>
+      <td width="100">WRI 100</td>
+      <td width="350">writing</td>
+      <td width="150">3</td>
+      <td width="150">N/A</td>
+    </tr>
+    <tr>
+      <td width="100">WRI 102</td>
+      <td width="350">writing</td>
+      <td width="150">3</td>
+      <td width="150">N/A</td>
+    </tr>
+  <tr>
+      <td width="100">SEN 301</td>
+      <td width="350">software Engineering</td>
+      <td width="150">3</td>
+      <td width="150">N/A</td>
+    </tr>
+
+    <tr>
+      <td>CIE 111</td>
+      <td>Intro to Comp</td>
+      <td>3</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>CIE 102</td>
+      <td>Programming</td>
+      <td>3</td>
+      <td>N/A</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+{% endblock base_body %}

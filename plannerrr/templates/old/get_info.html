@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>first form</title>
+</head>
+<body>
+<p>Getting all information required --first form</p>
+ <form action="" method="post">
+     {% csrf_token %}
+     {{ form.non_field_errors }}
+        <p>Major {{ form.choose_major }}</p>
+        <p>School {{ form.choose_school }}</p>
+        <p>Semester {{ form.semester_enrolled }}</p>
+        <p>creadit_hours_earned {{ form.credit_hours_earned }}</p>
+        <p>current_cgpa {{ form.current_cgpa }}</p>
+        <p>credit_hour_you_intend_to_take {{ form.credit_hour_you_intend_to_take }}</p>
+        <p>year_enrolled {{ form.year_enrolled }}</p>
+     <button type="submit">Submit</button>
+ </form>
+</body>
+</html>

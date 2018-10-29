@@ -1,0 +1,72 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}{% endblock meta %}
+    {% block base_title %}
+    <title>{% block title %}SDP{% endblock title %}</title>
+    {% endblock base_title %}
+
+    {# Base Foundation CSS #}
+    {% block foundation_css %}
+    <link href="{% static "foundation/css/normalize.css" %}" rel="stylesheet"/>
+    <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+    {% endblock foundation_css %}
+
+    {# Custom CSS #}
+    {% block css %}{% endblock css %}
+
+    {# Override if you need another version of modernizr #}
+    {% block foundation_modernizer %}
+    <script src="{% static "foundation/js/vendor/modernizr.js" %}"></script>
+    {% endblock foundation_modernizer %}
+
+    {# Custom head JS #}
+    {% block head_js %}{% endblock head_js %}
+</head>
+<!-- added background image-->
+<body {% block body_attr %}{% endblock body_attr %} style="background-image: url('{% static 'images/academic_planner.jpg' %}');
+            background-repeat: no-repeat;
+            background-size: 100%;">
+     <!-- Top navbar -->
+<div class="top-bar" style="background-color: Menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <a href='/header/'><li class="menu-text" style="background-color: Menu; color: #0a0a0a">AUN Degree Planner</li></a>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li class="active" style="background-color: Menu"><a href='/account/login/'>Login</a></li>
+      <li class="active" style="background-color: Menu"><a href='/account/register/'>SignUp</a></li>
+    </ul>
+  </div>
+</div>
+    {# Main content goes here #}
+    {% block base_body %}{% endblock base_body %}
+
+    {# Override if you need another version of jQuery #}
+    {% block foundation_jquery %}
+    <script src="{% static "foundation/js/vendor/jquery.js" %}"></script>
+    {% endblock foundation_jquery %}
+
+    {# Foundation JS #}
+    {% block foundation_js %}
+    <script src="{% static "foundation/js/foundation.min.js" %}"></script>
+    {% endblock foundation_js %}
+
+    {# Custom JS #}
+    {% block body_js %}{% endblock body_js %}
+
+    {# Init Foundation #}
+    {% block foundation_js_init %}
+    <script>
+        $(document).foundation();
+    </script>
+
+
+    {% endblock foundation_js_init %}
+</body>
+</html>

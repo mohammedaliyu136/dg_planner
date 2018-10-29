@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+     <head>
+         <title>Title</title>
+         <style type="text/css">
+             .row{
+                width: 100%;
+             }
+             .column{
+                width: 50%;
+                float: left;
+             }
+             table{
+                width: 50%;
+                border: 1px solid #dedede;
+                font-size: 12pt;
+                padding-top: 6px;
+                float: left;
+             }
+             .head{
+                background-color: grey;
+                color: white;
+                }
+             .semester{
+                font-size: 15pt;
+             }
+             .info{
+                font-size: 12pt;
+             }
+         </style>
+     </head>
+     <body>
+     <div class="info">Name: {{person.first_name}} {{person.last_name}}</div>
+     <div class="info">ID: {{person.username}}</div>
+     <br><br>
+     <span class="semester">{{profile_data.0.0}}</span>
+     <table>
+         <tr>
+             <td class="head" style="width: 20%">#</td>
+             <td class="head" style="width: 65%; padding-left: 3px">Title</td>
+             <td class="head" style="width: 15%"><center>Units</center></td>
+         </tr>
+        <tbody>
+        {% for course in schedules %}
+         {% if course.semester == profile_data.0.1 %}
+            <tr>
+                <td style="padding-left: 2px">{{ course.code }}</td>
+                <td style="padding-left: 3px">{{ course.title }}</td>
+                <td><center>{{ course.units }}</center></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+     </table>
+     <br><br>
+
+
+     <!-- semester 2 -->
+     <span class="semester">{{profile_data.1.0}}</span>
+     <table>
+         <tr>
+             <td class="head" style="width: 20%">#</td>
+             <td class="head" style="width: 65%; padding-left: 3px">Title</td>
+             <td class="head" style="width: 15%"><center>Units</center></td>
+         </tr>
+        <tbody>
+        {% for course in schedules %}
+         {% if course.semester == profile_data.1.1 %}
+            <tr>
+                <td style="padding-left: 2px">{{ course.code }}</td>
+                <td style="padding-left: 3px">{{ course.title }}</td>
+                <td><center>{{ course.units }}</center></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+     </table>
+     <br><br>
+
+
+     <!-- semester 3 -->
+     <span class="semester">{{profile_data.2.0}}</span>
+     <table>
+         <tr>
+             <td class="head" style="width: 20%">#</td>
+             <td class="head" style="width: 65%; padding-left: 3px">Title</td>
+             <td class="head" style="width: 15%"><center>Units</center></td>
+         </tr>
+        <tbody>
+        {% for course in schedules %}
+         {% if course.semester == profile_data.2.1 %}
+            <tr>
+                <td style="padding-left: 2px">{{ course.code }}</td>
+                <td style="padding-left: 3px">{{ course.title }}</td>
+                <td><center>{{ course.units }}</center></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+     </table>
+     <br><br>
+
+     <!-- semester 4 -->
+     <span class="semester">{{profile_data.3.0}}</span>
+     <table>
+         <tr>
+             <td class="head" style="width: 20%">#</td>
+             <td class="head" style="width: 65%; padding-left: 3px">Title</td>
+             <td class="head" style="width: 15%"><center>Units</center></td>
+         </tr>
+        <tbody>
+        {% for course in schedules %}
+         {% if course.semester == profile_data.3.1 %}
+            <tr>
+                <td style="padding-left: 2px">{{ course.code }}</td>
+                <td style="padding-left: 3px">{{ course.title }}</td>
+                <td><center>{{ course.units }}</center></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+     </table>
+     <br><br>
+
+
+     </body>
+ </html>

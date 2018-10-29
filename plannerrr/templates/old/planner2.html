@@ -1,0 +1,419 @@
+{% extends "main_base.html" %}
+
+{% block base_body %}
+<script>
+  not_selected = {{course_list|safe }}
+  not_selected.unshift('Select course');
+  console.log(not_selected);   //sanity check
+  pre_req = [['CIE111','null'],['CIE105','CIE111'],['CIE106','CIE105'],['MAT210','MAT112'],['CIE106','CIE105'],
+  			  ['CSC213','CSC105'],['CSC214','CSC213'],['CSC202','CIE106'],['PHY205','MAT210'],['PHY206','PHY205'],
+  			  ['CSC232','CIE105'],['CIE231','CIE106'],['CSC364','CSC202'],['CIE302','CIE106'],['CSC384','CSC202'],
+  			  ['CSC301','CSC202'],['MAT312','MAT211'],['SEN301','CSC202'],['CSC213','CIE106']];
+  schedule = [['{{profile_data.0}}'],['{{profile_data.1}}'],['{{profile_data.2}}'],['{{profile_data.3}}'],['{{profile_data.4}}'],
+  				['{{profile_data.5}}'],['{{profile_data.6}}'],['{{profile_data.7}}']]
+function populate(options){
+	var select = document.getElementById("courses");
+	    for (var i = 0; i < options.length; i++) {
+		var opt = options[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = opt;
+		select.appendChild(el);
+	    }
+}
+
+function populate_A(options){
+	var select = document.getElementById("semester");
+	    for (var i = 0; i < options.length; i++) {
+		var opt = options[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = opt;
+		select.appendChild(el);
+	    }
+}
+
+
+function startUp(){
+    var profile_data = {{profile_data|safe }}
+	populate_A(profile_data);
+	populate(not_selected);
+}
+
+
+ function addRow(table_id, course_id){
+	//alert('hi')
+	var table= '#'+table_id+' tbody'
+	$(table).append(
+		'<tr class="child"><td class="crn">'+course_id+'</td><td>'+'nil'+'</td><td><button class="btnDelete">Drop</button></td></tr>');
+  }
+  function deleteRow(tablename,rid) {
+   var idn = rid.rowIndex
+    document.getElementById(tablename).deleteRow(idn);
+    console.log(tablename);
+}
+
+
+function add_to_table(){
+	var selected_table = $('#semester :selected').text();
+
+	var selected_course_id = $('#courses :selected').text();
+	is_valid = (selected_course_id !== 'Select course');
+	if (is_valid){
+		check = check_pre_req(selected_course_id,not_selected);
+		if(check == false){
+			add_to_schedule_array(selected_table, selected_course_id);  //add to schedule array
+			console.log(schedule)  //sanity check
+			addRow(selected_table, selected_course_id);
+			not_selected=remove(not_selected,selected_course_id);
+			clear(courses);
+			populate(not_selected);
+		}else{
+			sweetAlert("Prerequisite Error", "You need "+check, "error"); // sweetAlert external library
+		}
+	}
+}
+
+function add_to_schedule_array(semester_name, course_code){
+	i = getIndexOfK(schedule, semester_name);  //get index of semester
+	schedule[i].push(course_code);
+}
+
+
+function getIndexOfK(arr, k) { 				//finding index of multidimentional array
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i][0]==k){
+    	return i
+    }
+  }
+};
+
+function clear(ctrl)
+    {
+        ctrl.options.length = 1;
+    }
+
+function remove(arr, val){
+	temp = [];
+	for (var i=0; i <arr.length; i++ ) {
+		if (arr[i] != val){temp.push(arr[i])};
+	};
+	return temp;
+}
+
+function delete_from_schedule(arr, k) {  //removes an element from schedule
+  for (var i = 0; i < arr.length; i++) {
+  	for (var j = 0; j < arr[i].length-1; j++) {
+	    if (arr[i][0]==k){
+	    	return i;
+	    }
+	}
+  }
+
+  sub_array = arr[i]
+  arr[i] = remove(sub_array, k)
+  console.log(schedule) //sanity check
+};
+
+
+// checks for pre_req
+//params course ID and array
+function check_pre_req(cid,arr){
+	pre = null;
+	for (var i=0; i <pre_req.length; i++ ) {
+		if (pre_req[i][0] == cid){
+			pre = pre_req[i][1]
+		}
+	}
+
+	if (pre == null){
+		return false
+	}else{
+	          if (arr.includes(pre)){ // return true or false
+			return pre}
+		else{ return false};
+	}
+}
+
+function del_schedule(semester_id, item){
+	var index = schedule[0].indexOf(item)
+    schedule[0].splice(index, 1);
+    console.log(schedule);
+}
+
+$(document).ready(function(){
+
+	 $("#{{profile_data.0}}").on('click','.btnDelete',function(){
+
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+
+	       $(this).closest('tr').remove();
+	       del_schedule(0, $item);
+	     });
+
+	 $("#{{profile_data.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(1, $item);
+	});
+	$("#{{profile_data.2}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(2, $item);
+	});
+	$("#{{profile_data.3}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(3, $item);
+	});
+
+});
+function restor(text){
+	//delete_from_schedule(schedule, text)
+	not_selected.push(text);
+	clear(courses);
+	populate(not_selected);
+}
+
+function save(){
+	swal("Done!", "You plan is saved!", "success")
+}
+
+</script>
+
+
+
+<body onload="startUp()">
+<div class="row"  style="margin-top: 3cm;" >
+	<div class="large-4 columns">
+		<select id="semester">
+		</select>
+	</div>
+	<div class="large-4 columns">
+		<select id="courses">
+		</select>
+	</div>
+	<div class="large-4 columns">
+		<div class="large-6 columns">
+			<a href="#" class="button"  onclick="add_to_table()" style="width:100%">ADD</a>
+		</div>
+		<div class="large-6 columns">
+			    <form id="my_form" action="" method="post">{% csrf_token %}
+					<input type="submit" class="button success" value="SAVE" style="width:100%;">
+				</form>
+
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-6 columns">
+		<table id = '{{profile_data.0}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id = '{{profile_data.1}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.1}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<table id= '{{profile_data.2}}' style="width:100%" >
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.2}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id='{{profile_data.3}}' style="width:100%">
+		          <thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.3}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+<!-- mid -->
+
+<div class="row">
+	<div class="large-6 columns">
+		<table id = '{{profile_data.4}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.4}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id = '{{profile_data.5}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.5}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<table id= '{{profile_data.6}}' style="width:100%" >
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.6}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id='{{profile_data.7}}' style="width:100%">
+		          <thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.7}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+ <script type="text/javascript">
+$(document).ready(function(){
+
+  $("#my_form").submit(function(){
+    $.post("",
+    {//name:"mohammed",
+     schedule_data:JSON.stringify(schedule),
+     csrfmiddlewaretoken:'{{ csrf_token }}'
+     },
+    function(data,status){
+      //alert("Data: " + data + "\nStatus: " + status);
+      swal("Successful!", "Your plan have been saved!", "success")
+    })
+    .fail(function(xhr) {
+        console.log("Error: " + xhr.statusText);
+        alert("Error: " + xhr.statusText);
+    });
+    return false;
+  });
+
+});
+</script>
+
+{% endblock base_body %}

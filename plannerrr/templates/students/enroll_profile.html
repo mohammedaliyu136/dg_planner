@@ -1,0 +1,86 @@
+{% extends "students/main_base.html" %}
+
+{% block base_body %}
+
+  <body>
+<style type="text/css">
+</style>
+  <script>
+</script>
+
+<form action="" method="post">
+	{% csrf_token %}
+            {{ form.non_field_errors }}
+<div class="row"  style="margin-top: 3cm;" >
+	<div class="large-5 large-offset-3 column">	
+		<div class="large-3 columns" >
+			<label>Semester Enrolled</label>
+		</div>
+		<div class="large-9 columns" >
+			<select name="semester_enrolled">
+				  <option value="Spring">Spring</option>
+				  <option value="Fall">Fall</option>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="large-5 large-offset-3 column">	
+		<div class="large-3 columns" >
+			<label>Year Enrolled</label>
+		</div>
+		<div class="large-9 columns" >
+			<select name="year_enrolled">
+				  <option value="2016">2016</option>
+				  <option value="2017">2017</option>
+				  <option value="2018">2018</option>
+				  <option value="2019">2019</option>
+				  <option value="2020">2020</option>
+				  <option value="2021">2021</option>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="large-5 large-offset-3 column">	
+		<div class="large-3 columns" >
+			<label>Major</label>
+		</div>
+		<div class="large-9 columns" >
+			<select name="major">
+				{% for major_result in major_results %}  <!-- loops through major table -->
+               <option value="{{ major_result.name }}">{{ major_result.name }}</option>
+				{%endfor%}
+           </select>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="large-5 large-offset-3 column">	
+		<div class="large-3 columns" >
+			<label>School</label>
+		</div>
+		<div class="large-9 columns" >
+			<select name="school">
+				{% for school_result in school_results %}  <!-- loops through School table  -->
+               <option value="{{ school_result.name }}">{{ school_result.name }}</option>
+				{%endfor%}
+           </select>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="large-5 large-offset-3 column">
+	     <div class="large-5 large-offset-9 column">
+			<button type="submit" class="success button">Continue</button>
+	     </div>
+	</div>
+</div>
+
+</form>
+
+{% endblock base_body %}

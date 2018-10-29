@@ -1,0 +1,431 @@
+{% extends "advisor/advisor_base.html" %}
+
+{% block base_body %}
+    {%load static %}
+<script src="{% static 'custom_js/default_plan.js' %}"></script>
+
+
+<script>
+    not_selected = {{not_selected|safe}};
+    not_selected.unshift('Select course');
+    pre_req = [['CIE111','null'],
+               ['CIE105','CIE111'],
+               ['CIE106','CIE105'],
+               ['MAT210','MAT112'],
+               ['CIE106','CIE105'],
+               ['CSC213','CSC105'],
+               ['CSC214','CSC213'],
+               ['CSC202','CIE106'],
+               ['PHY205','MAT210'],
+               ['PHY206','PHY205'],
+               ['CSC232','CIE105'],
+               ['CIE231','CIE106'],
+               ['CSC364','CSC202'],
+               ['CIE302','CIE106'],
+               ['CSC384','CSC202'],
+               ['CSC301','CSC202'],
+               ['MAT312','MAT211'],
+               ['SEN301','CSC202'],
+               ['CSC213','CIE106']];
+
+    schedule = [["{{profile_data.0.1}}"],
+                ["{{profile_data.1.1}}"],
+                ["{{profile_data.2.1}}"],
+                ["{{profile_data.3.1}}"],
+                ["{{profile_data.4.1}}"],
+                ["{{profile_data.5.1}}"],
+                ["{{profile_data.6.1}}"],
+                ["{{profile_data.7.1}}"]];
+    console.log(not_selected);
+
+    $(document).ready(function(){
+		//console.log(schedule);
+	 $("#{{profile_data.0.1}}").on('click','.btnDelete',function(){
+
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+        removeUnits("{{profile_data.0.1}}units", $item);
+	       $(this).closest('tr').remove();
+	       del_schedule(0, $item);
+	     });
+
+	 $("#{{profile_data.1.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(1, $item);
+	});
+	$("#{{profile_data.2.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(2, $item);
+	});
+	$("#{{profile_data.3.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(3, $item);
+	});
+	$("#{{profile_data.4.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(4, $item);
+	});
+	$("#{{profile_data.5.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(5, $item);
+	});
+	$("#{{profile_data.6.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(6, $item);
+	});
+	$("#{{profile_data.7.1}}").on('click','.btnDelete',function(){
+		var $item = $(this).closest("tr")   // Finds the closest row <tr>
+                       .find(".crn")     // Gets a descendent with class="nr"
+                       .text();         // Retrieves the text within <td>
+		restor( $item);
+		$(this).closest('tr').remove();
+		del_schedule(7, $item);
+	});
+
+	$("#my_form").submit(function(){
+    $.post("/advisor/default/plan/save/",
+    {//name:"mohammed",
+     schedule_data:JSON.stringify(schedule),
+     csrfmiddlewaretoken:'{{ csrf_token }}'
+     },
+    function(data,status){
+      //alert("Data: " + data + "\nStatus: " + status);
+      swal("Successful!", "Your plan have been saved!", "success")
+    })
+    .fail(function(xhr) {
+        console.log("Error: " + xhr.statusText);
+        alert("Error: " + xhr.statusText);
+    });
+    return false;
+  });
+
+});
+ units = [];
+$(document).ready(function(){
+});
+</script>
+
+<script>
+all_course = [
+{% for course in all_course %}
+	["{{course.code}}","{{course.course_title}}","{{course.course_description}}","{{course.dept_name}}","{{course.course_credit}}"],
+{% endfor %}
+""
+];
+</script>
+
+<script src="{% static 'custom_js/all_course_data.js' %}"></script>
+<div class="container" style="">
+	<div class="row"  style="margin-top: 3cm;" >
+		<div class="large-4 columns">
+			<select id="semester">
+				{% for profile in profile_data %}
+					<option value="{{profile.1}}">{{profile.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="large-4 columns">
+			<select id="courses">
+				<option value="Select Course">Select Course</option>
+				{% for course in courses %}
+					<option id="{{course.code}}" value="{{course.code}}">{{course.code}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="large-4 columns">
+			<div class="large-6 columns">
+				<a href="#" class="button"  onclick="add_to_plan()" style="width:100%">ADD</a>
+			</div>
+			<div class="large-6 columns">
+					<form id="my_form" action="" method="post">{% csrf_token %}
+						<input type="submit" class="button success" value="SAVE" style="width:100%;">
+					</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<table id = '{{profile_data.0.1}}' style="width:100%;">
+				<thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.0.0}}</th>
+					  <th width="100"><span id="{{profile_data.0.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100">Action</th>
+					  </tr>
+				  </thead>
+				  <tbody>{% with my_var=0 %}
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.0.1 %}
+							<tr id="{{ course.course_id }}">
+								<td class="crn">{{ course.course_id }}</td>
+								<td class="title"><script>setTitle("{{ course.course_id }}");</script> </td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.0.1}}units","{{ course.course_id }}"); add_schedule(0, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+						{% endwith %}
+				  </tbody>
+			</table>
+		</div>
+		<div class="large-6 columns">
+			<table id = '{{profile_data.1.1}}' style="width:100%">
+				<thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.1.0}}</th>
+					  <th width="100"><span id="{{profile_data.1.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100">Action</th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.1.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.1.1}}units","{{ course.course_id }}"); add_schedule(1, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+				  </tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-6 columns">
+			<table id= '{{profile_data.2.1}}' style="width:100%" >
+				<thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.2.0}}</th>
+					  <th width="100"><span id="{{profile_data.2.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.2.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.2.1}}units","{{ course.course_id }}"); add_schedule(2, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+				  </tbody>
+			</table>
+		</div>
+		<div class="large-6 columns">
+			<table id='{{profile_data.3}}' style="width:100%">
+					  <thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.3.0}}</th>
+					  <th width="100"><span id="{{profile_data.3.1}}units">{{units}}0</span> Units</th>
+					</tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.3.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.3.1}}units","{{ course.course_id }}"); add_schedule(3, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+
+				  </tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- mid -->
+	<div class="row">
+		<div class="large-6 columns">
+			<table id= '{{profile_data.4.1}}' style="width:100%" >
+				<thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.4.0}}</th>
+					  <th width="100"><span id="{{profile_data.4.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.4.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.4.1}}units","{{ course.course_id }}"); add_schedule(4, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+				  </tbody>
+			</table>
+		</div>
+		<div class="large-6 columns">
+			<table id='{{profile_data.5.1}}' style="width:100%">
+					  <thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.5.0}}</th>
+					  <th width="100"><span id="{{profile_data.5.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.5.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.5.1}}units","{{ course.course_id }}"); add_schedule(5, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+
+				  </tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<table id= '{{profile_data.6.1}}' style="width:100%" >
+				<thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.6.0}}</th>
+					  <th width="100"><span id="{{profile_data.6.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.6.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.6.1}}units","{{ course.course_id }}"); add_schedule(6, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+				  </tbody>
+			</table>
+		</div>
+		<div class="large-6 columns">
+			<table id='{{profile_data.7.1}}' style="width:100%">
+					  <thead style='background:lightblue'>
+					<tr>
+					  <th width="150"></th>
+					  <th width="300">{{profile_data.7.0}}</th>
+					  <th width="100"><span id="{{profile_data.7.1}}units">{{units}}0</span> Units</th>
+					  </tr>
+				  </thead>
+				<thead>
+					<tr>
+					  <th width="150">Course code</th>
+					  <th width="300">Title</th>
+					  <th width="100"></th>
+					  </tr>
+				  </thead>
+						{% for course in schedules %}
+						 {% if course.semester == profile_data.7.1 %}
+							<tr>
+								<td>{{ course.course_id }}</td>
+								<td><script>setTitle("{{ course.course_id }}");</script></td>
+								<td><button class="btnDelete">Drop</button></td>
+								<script>setUnits("{{profile_data.7.1}}units","{{ course.course_id }}"); add_schedule(7, "{{ course.course_id }}");</script>
+							</tr>
+							{% endif %}
+						  {% endfor %}
+				  <tbody>
+
+				  </tbody>
+			</table>
+		</div>
+	</div>
+
+	</div>
+</div>
+{% endblock base_body %}

@@ -1,0 +1,116 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}{% endblock meta %}
+    {% block base_title %}
+    <title>{% block title %}SDP{% endblock title %}</title>
+    {% endblock base_title %}
+
+    {# Base Foundation CSS #}
+    {% block foundation_css %}
+    <link href="{% static "foundation/css/normalize.css" %}" rel="stylesheet"/>
+    <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+    {% endblock foundation_css %}
+
+    {# Custom CSS #}
+    {% block css %}{% endblock css %}
+
+    {# Override if you need another version of modernizr #}
+    {% block foundation_modernizer %}
+    <script src="{% static "foundation/js/vendor/modernizr.js" %}"></script>
+    <script src="{% static "foundation/js/foundation.js" %}"></script>
+    <script src="{% static "jss/jquery-1.8.3.js" %}"></script>
+    <script src="{% static "jss/vendor/jquery.js" %}"></script>
+    <script src="{% static "jss/vendor/jquery-ui-1.9.2.custom.js" %}"></script>
+
+    <script src="{% static "dist/sweetalert-dev.js" %}"></script>
+	<link href="{% static "dist/sweetalert.css" %}" rel="stylesheet"/>
+    {% endblock foundation_modernizer %}
+
+
+    {# Custom head JS #}
+    {% block head_js %}{% endblock head_js %}
+</head>
+<!-- added background image-->
+<body {% block body_attr %}{% endblock body_attr %} style="background-color: #c4c4c4;">
+    <style type="text/css">
+
+.topbar-center-logo {
+  background: #2c3840;
+}
+
+.topbar-center-logo .menu {
+  background: #2c3840;
+}
+
+.topbar-center-logo .menu a {
+  color: #fefefe;
+}
+
+.topbar-center-logo .top-bar-center {
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .topbar-center-logo .top-bar-center {
+    display: none;
+  }
+}
+
+.topbar-center-logo-mobile {
+  background: #2c3840;
+}
+
+.topbar-center-logo-mobile .menu-icon {
+  vertical-align: text-top;
+}
+
+
+    </style>
+  <!-- Top navbar -->
+<div class="top-bar" style="background-color: #0000FF; color: white">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text" style="background-color: #0000FF; color: white"><a href='/students/' style="color: white">AUN Degree Planner</a></li>
+      <li style="background-color: #0000FF;"><a href="/students/" style="color: white">Students</a></li>
+      <li style="background-color: #0000FF;"><a href="/team/" style="color: white">Team</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li class="active" style="background-color: #0000FF;"><a href='/profile/' style="color: white">{{user.username}}</a></li>
+      <li class="active" style="background-color: #0000FF;"><a href='/login_out/' style="color: white">Logout</a></li>
+    </ul>
+  </div>
+</div>
+    {# Main content goes here #}
+    {% block base_body %}{% endblock base_body %}
+
+    {# Override if you need another version of jQuery #}
+    {% block foundation_jquery %}
+    <script src="{% static "foundation/js/vendor/jquery.js" %}"></script>
+    {% endblock foundation_jquery %}
+
+    {# Foundation JS #}
+    {% block foundation_js %}
+    <script src="{% static "foundation/js/foundation.min.js" %}"></script>
+    {% endblock foundation_js %}
+
+    {# Custom JS #}
+    {% block body_js %}{% endblock body_js %}
+
+    {# Init Foundation #}
+    {% block foundation_js_init %}
+    <script>
+        $(document).foundation();
+    </script>
+
+
+    {% endblock foundation_js_init %}
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends "login_base.html" %}
+
+{% block base_body %}
+
+
+<div class="row" style="margin-top: 150px;">
+   <div class="large-6 large-offset-3 columns">
+<div class="panel callout radius" style="background-color: white; border:8px solid #5A9BD5;">
+         <div class="row">
+             <label><central></central></label>
+         </div>
+      <form action="" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+          <!-- Title -->
+       <div class="row">
+           {%load static %}
+         <label style="margin-top: -16px;margin-bottom: 25px; text-align: center; font-weight: bold;"><img src="{% static 'images/login_ic.png' %}"></label>
+       </div>
+
+
+         <div class="row" style="margin-top: 25px">
+           <div class="large-2 columns">
+             <label for="{{ form.id_number.id_for_label }}" style="text-align: right; font-weight: bold; margin-top: 8px; margin-right: -15px;">ID :</label>
+         </div>
+           <div class="large-10 columns">
+             {{ form.id_number }}
+           </div>
+
+         </div>
+
+
+         <div class="row">
+           <div class="large-2 columns">
+                <label for="{{ form.password.id_for_label }}" style="text-align: right; font-weight: bold;  margin-top: 8px; margin-right: -17px;">Password:</label>
+           </div>
+         <div class="large-10 columns">
+             {{ form.password }}
+         </div>
+
+         </div>
+
+
+          <div class="row">
+           <div class="large-2 columns">
+           </div>
+         <div class="large-10 columns">
+             <button type="submit" class="success button" style="width: 100%; background-color: #5A9BD5;"  >Login</button>
+         </div>
+          </div>
+
+          <div class="row">
+         <div class="large-5 large-offset-2 columns">
+              <label><a href='/register/'>Create an Account</a></label>
+         </div>
+         <div class="large-5 columns">
+              <label><a href="#"></a> Forgot Password?</label>
+         </div>
+
+         </div>
+
+</form>
+
+     </div>
+
+   </div>
+</div>
+
+{% endblock base_body %}

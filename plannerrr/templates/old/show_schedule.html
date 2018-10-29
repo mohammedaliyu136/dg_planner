@@ -1,0 +1,251 @@
+{% extends "main_base.html" %}
+
+{% block base_body %}
+
+<div class="row" style="margin-top: 35px">
+	<div class="large-6 columns">
+		<table id = '{{profile_data.0.1}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.0.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.0.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id = '{{profile_data.1.1}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.1.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.1.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<table id= '{{profile_data.2.1}}' style="width:100%" >
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.2.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.2.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id='{{profile_data.3.1}}' style="width:100%">
+		          <thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.3.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.3.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+
+		      </tbody>
+		</table>
+	</div>
+</div>
+	<!-- mid -->
+
+	<div class="row">
+	<div class="large-6 columns">
+		<table id = '{{profile_data.4.1}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.4.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			  <tbody>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.4.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id = '{{profile_data.5.1}}' style="width:100%">
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.5.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.5.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<table id= '{{profile_data.6.1}}' style="width:100%" >
+			<thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.6.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.6.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+		      </tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<table id='{{profile_data.7.1}}' style="width:100%">
+		          <thead style='background:lightblue'>
+			    <tr>
+			      <th width="150"></th>
+			      <th width="300">{{profile_data.7.0}}</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+			<thead>
+			    <tr>
+			      <th width="150">Course code</th>
+			      <th width="300">Title</th>
+			      <th width="100"></th>
+			      </tr>
+			  </thead>
+                    {% for course in schedules %}
+                     {% if course.semester == profile_data.7.1 %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.title }}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+			  <tbody>
+
+		      </tbody>
+		</table>
+	</div>
+</div>
+{% endblock base_body %}
